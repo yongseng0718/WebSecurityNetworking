@@ -15,7 +15,8 @@
 </head>
 <body>
     <h1>安全登录演示</h1>
-    <form id="loginForm">
+    <!-- 移除了 id="loginForm"，改用原生表单提交 -->
+    <form method="POST"> <!-- 不指定 action，表单会提交到当前页面自身的URL -->
         <div class="form-group">
             <label for="username">用户名:</label>
             <input type="text" id="username" name="username" required>
@@ -29,25 +30,8 @@
     <div id="message"></div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止表单默认提交行为
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const messageEl = document.getElementById('message');
-
-            // 简单的硬编码验证
-            if (username === 'demo' && password === 'secret123') {
-                messageEl.style.color = 'green';
-                messageEl.textContent = '登录成功！';
-            } else {
-                messageEl.style.color = 'red';
-                messageEl.textContent = '用户名或密码错误！';
-            }
-
-            // 关键：为了在Wireshark中更容易找到，我们可以打印出提交的数据
-            console.log(`[Wireshark捕获目标] 提交的数据 - 用户名: ${username}, 密码: ${password}`);
-        });
+        // 完全移除之前的JavaScript脚本
+        // 让表单以其默认方式提交
     </script>
 </body>
 </html>
